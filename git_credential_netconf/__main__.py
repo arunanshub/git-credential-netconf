@@ -28,34 +28,34 @@ def main():
         help="The `gpg` program to use.",
         default="gpg",
     )
-    sub = ps.add_subparsers(
-        help="The credential command to use.",
-        dest="command",
-        required=True,
-    )
-    parse_get = sub.add_parser("get")
-
-    # unsupported by this helper
-    sub.add_parser("store")
-    sub.add_parser("erase")
-
     ps.add_argument(
         "-d",
         "--debug",
         action="store_true",
         help="Show output of `gpg` (it prints into `stderr`).",
     )
-    parse_get.add_argument(
+    ps.add_argument(
         "-f",
         "--file",
         default=os.path.expanduser("~/.netconf.gpg"),
         help="The `.netconf.gpg` file to use.",
     )
 
+    # "operation" argument
+    sub = ps.add_subparsers(
+        help="The credential operation to use.",
+        dest="operation",
+        required=True,
+    )
+    sub.add_parser("get")
+    # unsupported by this helper
+    sub.add_parser("store")
+    sub.add_parser("erase")
+
     args = ps.parse_args()
 
     # we only support "get"
-    if args.command == "get":
+    if args.operation == "get":
         try:
             # send data to stdout
             sys.stdout.write(
