@@ -1,5 +1,6 @@
 import argparse
 import os
+import sys
 
 from . import netconf
 
@@ -16,9 +17,6 @@ Visit <https://github.com/arunanshub/git-credential-netconf> for more info.
 
 
 def main():
-    import sys
-    print("called", file=sys.stderr)
-
     ps = argparse.ArgumentParser(
         prog=APP_NAME,
         description=APP_DESC,
@@ -36,8 +34,10 @@ def main():
         required=True,
     )
     parse_get = sub.add_parser("get")
-    parse_store = sub.add_parser("store")
-    parse_erase = sub.add_parser("erase")
+
+    # unsupported by this manager
+    sub.add_parser("store")
+    sub.add_parser("erase")
 
     ps.add_argument(
         "-d",
@@ -53,12 +53,12 @@ def main():
     )
 
     args = ps.parse_args()
-    print(args, file=sys.stderr)
 
     # we only support "get"
     if args.command == "get":
         try:
-            print(
+            # send data to stdout
+            sys.stdout.write(
                 netconf.parse_config(
                     netconf.decrypt_file(
                         args.file,
@@ -67,5 +67,7 @@ def main():
                     )
                 )
             )
+            sys.stdout.flush()
+
         except (Exception, KeyboardInterrupt) as err:
             raise SystemExit(f"ERROR: {err}")
