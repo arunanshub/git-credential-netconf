@@ -57,10 +57,9 @@ def decrypt_file(
         stderr=subprocess.PIPE,
         stdout=subprocess.PIPE,
     )
-    retcode = p.wait()
     stdout, stderr = p.communicate()
 
-    if retcode:
+    if p.returncode:
         raise subprocess.SubprocessError(
             f"Error while decrypting {filename!r}:\n{stderr.decode()}"
         )
