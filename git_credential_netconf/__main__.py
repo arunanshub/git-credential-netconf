@@ -66,6 +66,7 @@ def main():
                         print_stderr=args.debug,
                     )
                 )
+                + "\n"
             )
             sys.stdout.flush()
 
