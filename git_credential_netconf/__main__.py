@@ -35,7 +35,7 @@ def main():
     )
     parse_get = sub.add_parser("get")
 
-    # unsupported by this manager
+    # unsupported by this helper
     sub.add_parser("store")
     sub.add_parser("erase")
 
