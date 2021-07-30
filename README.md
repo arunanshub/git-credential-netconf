@@ -64,7 +64,7 @@ The following guide assumes you have a GPG key and you have installed `git-crede
 
 4. Tell Git to use it
 
-   **⚠️ Make sure that ~/.local/bin is in `$PATH`**
+   **⚠️ Make sure that `~/.local/bin` is in `$PATH`**
 
    ```bash
    git config --global credential.helper 'netconf --debug'
