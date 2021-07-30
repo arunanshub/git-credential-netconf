@@ -121,15 +121,15 @@ You can use any name for the section name, but using `conf` is the convention.
 This table shows the equivalent values for `.netconf`, `.netrc` and
 `git-credential` keys:
 
-| `.netconf`                  | `.netrc` like | `git-credential` |
-|-----------------------------|---------------|------------------|
-| `login`, `user`, `username` | `login`       | `username`       |
-| `machine`, `host`           | `machine`     | `host`           |
-| `path`                      |               | `path`           |
-| `password`                  | `password`    | `password`       |
-| `port`[^1], `protocol`      |               | `protocol`       |
+| `.netconf`                     | `.netrc` like | `git-credential` |
+|--------------------------------|---------------|------------------|
+| `login`, `user`, `username`    | `login`       | `username`       |
+| `machine`, `host`              | `machine`     | `host`           |
+| `path`                         |               | `path`           |
+| `password`                     | `password`    | `password`       |
+| `port`<sup>1</sup>, `protocol` |               | `protocol`       |
 
-[^1]: If `port` is an integer, it is used as a `host:port` format.
+1: If `port` is an integer, it is used as a `host:port` format.
 
 # Why another tool?
 
