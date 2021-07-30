@@ -19,12 +19,12 @@ pip3 install git-credential-netconf
 # Introduction
 
 Credential management in Git should not be difficult to use or configure, but
-(unfortunately) looking at the existing tools, it is difficult to think about
-it, let alone configure them without errors.
+(unfortunately) looking at the existing tools, it is difficult to even think
+about it, let alone configure them without errors.
 
 **NOT. ANY. MORE!**
 
-Presenting `git-credential-netconf`, and easy yet powerful way to manage your
+Presenting `git-credential-netconf`, an easy yet powerful way to manage your
 Git credentials by harnessing the power of **GnuPG!**
 
 # Usage Overview
@@ -58,9 +58,9 @@ The following guide assumes you have a GPG key and you have installed `git-crede
 
    1. And remove your original `.netconf` for security:
 
-        ```bash
-        shred -u ~/.netconf
-        ```
+      ```bash
+      shred -u ~/.netconf
+      ```
 
 4. Now use git without hassle!
 
@@ -99,8 +99,8 @@ git-credential-netconf is licensed under MIT license. Visit
 
 # About `.netconf` file
 
-`.netconf` can be used as a direct replacement of `.netrc` file, with the advantage
-of being more convenient to use.
+`.netconf` can be used as a direct replacement for `.netrc` file, with the
+advantage of being more convenient to use.
 
 ## The section name
 
@@ -108,8 +108,8 @@ You can use any name for the section name, but using `conf` is the convention.
 
 ## The keys
 
-This table shows the correlation of `.netconf`, `.netrc` and `git-credential`
-keys:
+This table shows the equivalent values for `.netconf`, `.netrc` and
+`git-credential` keys:
 
 | `.netconf`                  | `.netrc` like | `git-credential` |
 |-----------------------------|---------------|------------------|
