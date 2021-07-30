@@ -79,6 +79,8 @@ The following guide assumes you have a GPG key and you have installed `git-crede
 usage: git-credential-netconf [-h] [-g GPG] [-d] [-f FILE] [-q]
                               {get,store,erase} ...
 
+Easy credential management using GPG.
+
 positional arguments:
   {get,store,erase}     The credential operation to use.
 
@@ -88,8 +90,8 @@ optional arguments:
   -d, --debug           Show output of `gpg` (it prints into `stderr`).
   -f FILE, --file FILE  The `.netconf.gpg` file to use.
   -q, --quit-on-failure
-                        Do not let Git consult any more helpers if an error
-                        is encountered while decryption.
+                        Do not let Git consult any more helpers if an error is
+                        encountered while decryption.
 
 git-credential-netconf is licensed under MIT license. Visit
 <https://github.com/arunanshub/git-credential-netconf> for more info.
@@ -111,8 +113,8 @@ keys:
 
 | `.netconf`                  | `.netrc` like | `git-credential` |
 |-----------------------------|---------------|------------------|
-| `login`, `user`, `username` | `username`    | `username`       |
-| `machine`, `host`           | `host`        | `host`           |
+| `login`, `user`, `username` | `login`       | `username`       |
+| `machine`, `host`           | `machine`     | `host`           |
 | `path`                      |               | `path`           |
 | `password`                  | `password`    | `password`       |
 | `port`, `protocol`          |               | `protocol`       |
