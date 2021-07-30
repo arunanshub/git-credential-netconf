@@ -21,6 +21,6 @@ setup(
         "Operating System :: OS Independent",
         "Intended Audience :: Developers",
     ],
-    install_requires=["python-gnupg"],
+    install_requires=["python-gnupg>=0.4.7"],
     url="https://github.com/arunanshub/git-credential-netconf",
 )
