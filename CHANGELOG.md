@@ -1,3 +1,13 @@
+## 0.2.0 (2021-07-30)
+
+### Refactor
+
+- **cli**: use `print(..., flush=True)` instead of `sys.stdout.flush()`
+
+### Feat
+
+- **netconf**: use python-gnupg instead of subprocess
+
 ## 0.1.0 (2021-07-30)
 
 ### Feat
