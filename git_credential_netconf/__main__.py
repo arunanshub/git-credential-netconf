@@ -1,6 +1,5 @@
 import argparse
 import os
-import sys
 
 from . import netconf
 
@@ -66,17 +65,16 @@ def main():
     if args.operation == "get":
         try:
             # send data to stdout
-            sys.stdout.write(
+            print(
                 netconf.parse_config(
                     netconf.decrypt_file(
                         args.file,
                         gpg_exec=args.gpg,
                         print_stderr=args.debug,
                     )
-                )
-                + "\n"
+                ),
+                flush=True,
             )
-            sys.stdout.flush()
 
         except Exception as err:
             if args.quit:
