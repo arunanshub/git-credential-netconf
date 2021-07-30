@@ -101,7 +101,9 @@ git-credential-netconf is licensed under MIT license. Visit
 
 # Why another tool?
 
-- TODO:  <30-07-21> -
+- All other tools are very hard to configure properly.
+- Using `Perl` is as clear as mud.
+- Python is easy to use, maintain and is very portable.
 
 # License
 
