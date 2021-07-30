@@ -61,8 +61,8 @@ def decrypt_file(
     Keyword Arguments:
         gpg_exec: The `gpg` program to use. Uses `gpg` by default.
         print_stderr:
-            Whether to redirect `stderr` of `gpg` to `stderr`. `False` disables
-            printing to `stderr`.
+            Whether to print the output of `gpg` to `stderr`. `True` enables
+            printing.
 
     Returns:
         str: Decrypted data as string.
@@ -70,7 +70,8 @@ def decrypt_file(
     Raises:
         FileNotFoundError: If the file `filename` does not exist.
         ValueError:
-            If `gpg` was unable to decrypt the file, or any error occurred.
+            If `gpg` was unable to decrypt the file, or any other error
+            occurred.
     """
     if not os.path.exists(filename):
         raise FileNotFoundError(f"{filename!r} does not exist.")
