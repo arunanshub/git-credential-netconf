@@ -40,6 +40,14 @@ def main():
         default=os.path.expanduser("~/.netconf.gpg"),
         help="The `.netconf.gpg` file to use.",
     )
+    ps.add_argument(
+        "-q",
+        "--quit-on-failure",
+        dest="quit",
+        action="store_true",
+        help="Do not let Git consult any more helpers"
+        " if an error is encountered while decryption.",
+    )
 
     # "operation" argument
     sub = ps.add_subparsers(
@@ -70,5 +78,9 @@ def main():
             )
             sys.stdout.flush()
 
-        except (Exception, KeyboardInterrupt) as err:
+        except Exception as err:
+            if args.quit:
+                print("quit=1")
             raise SystemExit(f"ERROR: {err}")
+        except KeyboardInterrupt:
+            raise SystemExit("ERROR: Caught keyboard interrupt!")
