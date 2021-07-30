@@ -62,7 +62,17 @@ The following guide assumes you have a GPG key and you have installed `git-crede
       shred -u ~/.netconf
       ```
 
-4. Now use git without hassle!
+4. Tell Git to use it
+
+   **⚠️ Make sure that ~/.local/bin is in `$PATH`**
+
+   ```bash
+   git config --global credential.helper 'netconf --debug'
+   ```
+
+   [Read more about flags for `git-credential-netconf` here.](#usage-details)
+
+5. Now use git without hassle!
 
    ```bash
    git push
