@@ -1,7 +1,9 @@
 import configparser
 import os
-import subprocess
 import sys
+from typing import Iterable, Optional
+
+import gnupg
 
 # Alternative names for some of the attributes used by `git-credential`.
 # This is mostly compatible with `git-credential-netrc.perl`, except for
@@ -22,11 +24,30 @@ ATTRIBUTES = {
     "username": "username",
 }
 
+# potential candidates for configuration files for git.
+CONFIGS = (
+    os.path.normpath(os.path.expanduser("~/.gitconfig")),
+    os.path.normpath("./.git/config"),
+)
+
+
+class _GitConfig:
+    """Git's configuration file reader class."""
+
+    def __init__(self, gitconfigs: Iterable[str] = CONFIGS):
+        self._conf = configparser.ConfigParser(interpolation=None)
+        self._conf.read(gitconfigs)
+
+    @property
+    def gpg_exec(self) -> str:
+        """The GPG executable configured for Git."""
+        return self._conf.get("gpg", "program", fallback="gpg")
+
 
 def decrypt_file(
     filename: str,
     *,
-    gpg_exec: str = "gpg",
+    gpg_exec: Optional[str] = None,
     print_stderr: bool = False,
 ) -> str:
     """Decrypt `filename` using `gpg` and return the output as `str`.
@@ -45,31 +66,28 @@ def decrypt_file(
 
     Raises:
         FileNotFoundError: If the file `filename` does not exist.
-        SubprocessError:
+        ValueError:
             If `gpg` was unable to decrypt the file, or any error occurred.
     """
     if not os.path.exists(filename):
         raise FileNotFoundError(f"{filename!r} does not exist.")
 
-    p = subprocess.Popen(
-        # "--output -" sends data to stdout
-        ["--output -", "--decrypt", filename],
-        executable=gpg_exec,
-        stderr=subprocess.PIPE,
-        stdout=subprocess.PIPE,
-    )
-    stdout, stderr = p.communicate()
+    gconf = _GitConfig()
 
-    if p.returncode:
-        raise subprocess.SubprocessError(
-            f"Error while decrypting {filename!r}:\n{stderr.decode()}"
-        )
+    gpg = gnupg.GPG(gpg_exec or gconf.gpg_exec)
+    with open(filename, "rb") as f:
+        res = gpg.decrypt_file(f)
 
     if print_stderr:
-        # redirect `gpg`'s `stderr` output to `stderr`
-        print(stderr.decode(), file=sys.stderr)
+        for line in res.stderr.splitlines():
+            # avoid the overly verbose [GNUPG:] messages
+            if not line.startswith("[GNUPG:]"):
+                print(line, file=sys.stderr, flush=True)
 
-    return stdout.decode()
+    if not res.ok:
+        raise ValueError(f"GnuPG failed to decrypt: {res.status!r}")
+
+    return str(res)
 
 
 def parse_config(data: str) -> str:
