@@ -1,3 +1,9 @@
+## 1.0.0 (2021-07-30)
+
+### Feat
+
+- **netconf**: change `.netconf` parsing format; do not use section name as `host`
+
 ## 0.2.1 (2021-07-30)
 
 ### Fix
