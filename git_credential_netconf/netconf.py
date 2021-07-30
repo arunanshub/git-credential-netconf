@@ -52,7 +52,8 @@ def decrypt_file(
         raise FileNotFoundError(f"{filename!r} does not exist.")
 
     p = subprocess.Popen(
-        ["-o -", "-d", filename],  # "-o -" sends data to stdout
+        # "--output -" sends data to stdout
+        ["--output -", "--decrypt", filename],
         executable=gpg_exec,
         stderr=subprocess.PIPE,
         stdout=subprocess.PIPE,
