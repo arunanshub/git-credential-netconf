@@ -1,5 +1,7 @@
 # git-credential-netconf
 
+[![Upload Python Package](https://github.com/arunanshub/git-credential-netconf/actions/workflows/python-publish.yml/badge.svg)](https://github.com/arunanshub/git-credential-netconf/actions/workflows/python-publish.yml)
+
 Git credentials management made easy.
 
 # Installation
