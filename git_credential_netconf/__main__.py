@@ -6,6 +6,7 @@ from . import netconf
 APP_NAME = "git-credential-netconf"
 
 APP_DESC = """\
+Easy credential management using GPG.
 """
 
 CLI_APP_EPILOG = """\
