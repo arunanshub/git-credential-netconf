@@ -18,11 +18,60 @@ pip3 install git-credential-netconf
 
 # Introduction
 
-- TODO:  <30-07-21> -
+Credential management in Git should not be difficult to use or configure, but
+(unfortunately) looking at the existing tools, it is difficult to think about
+it, let alone configure them without errors.
+
+**NOT. ANY. MORE!**
+
+Presenting `git-credential-netconf`, and easy yet powerful way to manage your
+Git credentials by harnessing the power of **GnuPG!**
 
 # Usage Overview
 
-- TODO:  <30-07-21> -
+The following guide assumes you have a GPG key and you have installed `git-credential-netconf`.
+
+1. Create a `.netconf` file in your home directory.
+
+   ```bash
+   touch ~/.netconf
+   ```
+
+2. Start by filling in your username and password:
+
+   ```conf
+   [conf]
+   login = yourname
+   password = very-secret-password
+   ```
+
+   **The `.netconf` file uses configuration file format.**
+
+   [Read more about `.netconf` file.](#about-netconf-file)
+
+3. Encrypt your `.netconf` file with `gpg`
+
+   ```bash
+   gpg --recipient yourname@example.com --output ~/.netconf.gpg --encrypt \
+       --sign ~/.netconf
+   ```
+
+   1. And remove your original `.netconf` for security:
+
+        ```bash
+        shred -u ~/.netconf
+        ```
+
+4. Now use git without hassle!
+
+   ```bash
+   git push
+   ```
+
+   This will prompt `git-credential-netconf` to decrypt the `~/.netconf` file
+   using `GPG` and fetch the `username` and `password`, among other values.
+
+   You'll be asked for the password to `GPG` private key when decrypting.
 
 # Usage Details
 
@@ -45,6 +94,10 @@ optional arguments:
 git-credential-netconf is licensed under MIT license. Visit
 <https://github.com/arunanshub/git-credential-netconf> for more info.
 ```
+
+# About `.netconf` file
+
+- TODO:  <30-07-21> -
 
 # Why another tool?
 
