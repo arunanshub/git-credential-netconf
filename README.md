@@ -97,7 +97,25 @@ git-credential-netconf is licensed under MIT license. Visit
 
 # About `.netconf` file
 
-- TODO:  <30-07-21> -
+`.netconf` can be used as a direct replacement of `.netrc` file, with the advantage
+of being more convenient to use.
+
+## The section name
+
+You can use any name for the section name, but using `conf` is the convention.
+
+## The keys
+
+This table shows the correlation of `.netconf`, `.netrc` and `git-credential`
+keys:
+
+| `.netconf`                  | `.netrc` like | `git-credential` |
+|-----------------------------|---------------|------------------|
+| `login`, `user`, `username` | `username`    | `username`       |
+| `machine`, `host`           | `host`        | `host`           |
+| `path`                      |               | `path`           |
+| `password`                  | `password`    | `password`       |
+| `port`, `protocol`          |               | `protocol`       |
 
 # Why another tool?
 
