@@ -92,8 +92,8 @@ def parse_config(data: str) -> str:
 
     try:
         conf.read_string(data)
-    except configparser.ParsingError as err:
-        raise ValueError("Failed to parse configuration data.") from err
+    except configparser.Error as err:
+        raise ValueError(f"Failed to parse configuration data: {err}") from err
 
     try:
         section = conf[conf.sections()[0]]
@@ -105,6 +105,14 @@ def parse_config(data: str) -> str:
     output = {"host": section.name}  # set host value early-on
 
     for attr in section:
+        # check if `port` is an int and add it to `host`
+        if attr == "port":
+            try:
+                output["host"] += ":" + str(section.getint(attr))
+                continue
+            except ValueError:
+                pass
+
         if attr in ATTRIBUTES:
             output[ATTRIBUTES[attr]] = section[attr]
 
