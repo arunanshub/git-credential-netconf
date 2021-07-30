@@ -1,3 +1,9 @@
+## 1.0.1 (2021-07-31)
+
+### Refactor
+
+- **cli**: add short info about application
+
 ## 1.0.0 (2021-07-30)
 
 ### Feat

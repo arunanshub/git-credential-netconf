@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name="git-credential-netconf",
-    version="1.0.0",
+    version="1.0.1",
     author="Arunanshu Biswas",
     author_email="mydellpc07@gmail.com",
     description="",
