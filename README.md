@@ -127,7 +127,9 @@ This table shows the equivalent values for `.netconf`, `.netrc` and
 | `machine`, `host`           | `machine`     | `host`           |
 | `path`                      |               | `path`           |
 | `password`                  | `password`    | `password`       |
-| `port`, `protocol`          |               | `protocol`       |
+| `port`[^1], `protocol`      |               | `protocol`       |
+
+[^1]: If `port` is an integer, it is used as a `host:port` format.
 
 # Why another tool?
 
