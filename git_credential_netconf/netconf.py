@@ -11,6 +11,9 @@ import gnupg
 #
 # See: https://git-scm.com/docs/git-credential#IOFMT
 ATTRIBUTES = {
+    # `host`
+    "machine": "host",
+    "host": "host",
     # `path`
     "path": "path",
     # `password`
@@ -120,18 +123,23 @@ def parse_config(data: str) -> str:
             "Invalid configuration data; section missing."
         ) from err
 
-    output = {"host": section.name}  # set host value early-on
+    output = {}
+    port_set = False
 
-    for attr in section:
-        # check if `port` is an int and add it to `host`
-        if attr == "port":
+    for attr in sorted(section.keys() & ATTRIBUTES.keys()):
+        if ATTRIBUTES[attr] == "host":
+            output["host"] = section[attr]  # set `host` early-on
             try:
-                output["host"] += ":" + str(section.getint(attr))
-                continue
-            except ValueError:
+                # set `port` to `host` if it is an `int`
+                output["host"] += f':{int(section["port"])}'
+                port_set = True
+            except (ValueError, KeyError):
                 pass
-
-        if attr in ATTRIBUTES:
+        else:
+            if port_set and attr == "port":
+                # don't set a `numeric` value for `protocol` if `port` is set
+                # in `host`
+                continue
             output[ATTRIBUTES[attr]] = section[attr]
 
     return "\n".join((f"{k}={v}" for k, v in output.items()))
