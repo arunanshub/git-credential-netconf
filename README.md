@@ -41,7 +41,7 @@ The following guide assumes you have a GPG key and you have installed `git-crede
 
 2. Start by filling in your username and password:
 
-   ```conf
+   ```ini
    [conf]
    login = yourname
    password = very-secret-password
