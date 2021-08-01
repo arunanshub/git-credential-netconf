@@ -37,7 +37,9 @@ def main():
     ps.add_argument(
         "-f",
         "--file",
-        default=os.path.expanduser("~/.netconf.gpg"),
+        default=os.path.normpath(
+            os.path.expanduser("~/.netconf.gpg"),
+        ),
         help="The `.netconf.gpg` file to use.",
     )
     ps.add_argument(
