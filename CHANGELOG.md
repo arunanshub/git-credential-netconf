@@ -1,3 +1,9 @@
+## 1.0.2 (2021-08-01)
+
+### Fix
+
+- **cli**: normalize `.netconf.gpg` path for portability
+
 ## 1.0.1 (2021-07-31)
 
 ### Refactor
