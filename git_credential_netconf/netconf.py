@@ -127,7 +127,11 @@ def parse_config(data: str) -> str:
     output = {}
     port_set = False
 
-    for attr in sorted(section.keys() & ATTRIBUTES.keys()):
+    for attr in section:
+        # We cannot use sorted(section.keys() & ATTRIBUTES.keys()), since we
+        # need to preserve the ordering of keys in the section.
+        if attr not in ATTRIBUTES:
+            continue
         if ATTRIBUTES[attr] == "host":
             output["host"] = section[attr]  # set `host` early-on
             try:
