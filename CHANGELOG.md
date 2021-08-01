@@ -1,3 +1,9 @@
+## 1.0.3 (2021-08-01)
+
+### Fix
+
+- **netconf**: preserve the ordering of keys in section
+
 ## 1.0.2 (2021-08-01)
 
 ### Fix
