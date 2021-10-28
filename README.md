@@ -124,7 +124,7 @@ This table shows the equivalent values for `.netconf`, `.netrc` and
 `git-credential` keys:
 
 | `.netconf`                     | `.netrc` like | `git-credential` |
-|--------------------------------|---------------|------------------|
+| ------------------------------ | ------------- | ---------------- |
 | `login`, `user`, `username`    | `login`       | `username`       |
 | `machine`, `host`              | `machine`     | `host`           |
 | `path`                         |               | `path`           |
