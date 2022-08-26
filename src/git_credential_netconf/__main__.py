@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import argparse
 import os
 
@@ -16,7 +18,7 @@ Visit <https://github.com/arunanshub/git-credential-netconf> for more info.
 """
 
 
-def main():
+def main() -> None:
     ps = argparse.ArgumentParser(
         prog=APP_NAME,
         description=APP_DESC,

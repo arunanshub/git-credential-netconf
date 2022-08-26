@@ -1,7 +1,9 @@
+from __future__ import annotations
+
 import configparser
 import os
 import sys
-from typing import Iterable, Optional
+from typing import Iterable
 
 import gnupg
 
@@ -37,7 +39,7 @@ CONFIGS = (
 class _GitConfig:
     """Git's configuration file reader class."""
 
-    def __init__(self, gitconfigs: Iterable[str] = CONFIGS):
+    def __init__(self, gitconfigs: Iterable[str] = CONFIGS) -> None:
         self._conf = configparser.ConfigParser(interpolation=None)
         self._conf.read(gitconfigs)
 
@@ -50,7 +52,7 @@ class _GitConfig:
 def decrypt_file(
     filename: str,
     *,
-    gpg_exec: Optional[str] = None,
+    gpg_exec: str | None = None,
     print_stderr: bool = False,
 ) -> str:
     """Decrypt `filename` using `gpg` and return the output as `str`.
