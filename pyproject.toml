@@ -1,4 +1,30 @@
-[tool]
+[tool.poetry]
+name = "git-credential-netconf"
+version = "1.0.3"
+description = "Git credentials management made easy!"
+authors = ["Arunanshu Biswas <mydellpc07@gmail.com>"]
+license = "MIT"
+repository = "https://github.com/arunanshu/git-credential-netconf"
+readme = "README.md"
+scripts = {git-credential-netconf = "git_credential_netconf.__main__:main"}
+classifiers=[
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+]
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/arunanshub/pyflocker/issues"
+"Changelog" = "https://github.com/arunanshub/pyflocker/blob/master/CHANGELOG.md"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+python-gnupg = "^0.4.7"
+
+[tool.poetry.dev-dependencies]
+pre-commit = "^2.20.0"
+
 [tool.commitizen]
 name = "cz_conventional_commits"
 version = "1.0.3"
@@ -6,3 +32,21 @@ tag_format = "$version"
 version_files = [
     "setup.py",
 ]
+
+[tool.pycln]
+all = true
+
+[tool.black]
+line-length = 79
+target-verson = "py38"
+
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+line_length = 79
+profile = "black"
+add_imports = ["from __future__ import annotations"]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
