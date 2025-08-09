@@ -23,7 +23,7 @@ python = "^3.7"
 python-gnupg = "^0.5.0"
 
 [tool.poetry.dev-dependencies]
-pre-commit = "^2.20.0"
+pre-commit = "^4.0.0"
 
 [tool.commitizen]
 name = "cz_conventional_commits"
